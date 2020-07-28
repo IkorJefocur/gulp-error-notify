@@ -1,0 +1,16 @@
+{
+  "name": "gulp-error-notify",
+  "version": "1.0.0",
+  "description": "Sending desktop and console notifications about errors",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "IkorJefocur",
+  "license": "ISC",
+  "dependencies": {
+    "gulp-plumber": "^1.2.1",
+    "node-notifier": "^7.0.2",
+    "throttle-debounce": "^2.2.1"
+  }
+}
