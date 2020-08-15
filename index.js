@@ -10,7 +10,8 @@ const errorNotify = {
 	options: {},
 	cache: [],
 
-	use({plugin, message}) {
+	use(error) {
+		const {plugin, message} = error;
 		const notification = this.cache.find(notif => plugin === notif.plugin && message === notif.message);
 
 		if (notification !== undefined) {
@@ -20,15 +21,16 @@ const errorNotify = {
 
 		this.cache.push({
 			plugin, message,
+			full: error,
 			count: 1
 		});
 		this.send();
 	},
 
 	send() {
-		for (let {plugin, message, count} of this.cache) {
+		for (let {plugin, message, count, full} of this.cache) {
 			if (this.options.console)
-				console.error(`Error in "${plugin}" (${count}):\n${message}`);
+				console.error(`Error in "${plugin}" (${count}):\n`, full);
 
 			if (this.options.desktop)
 				desktop({
